@@ -1,6 +1,13 @@
 const express = require('express')
 require('./config/database')
+const cors = require('cors')
 const app = express()
+app.use(cors({
+  origin: ['http://localhost:7000', 'https://myapp.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json())
 const PORT = process.env.PORT
 
