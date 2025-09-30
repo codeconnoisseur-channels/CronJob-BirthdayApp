@@ -1,21 +1,23 @@
-const express = require('express')
-require('./config/database')
-const cors = require('cors')
-const app = express()
-app.use(cors({
-  origin: ['http://localhost:7000', 'https://myapp.com'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+const express = require("express");
+require("./config/database");
+const cors = require("cors");
+const app = express();
+app.use(
+  cors({
+    origin: ["http://localhost:7000", "https://myapp.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
-app.use(express.json())
-const PORT = process.env.PORT
+app.use(express.json());
+const PORT = process.env.PORT;
 
-const userRouter = require('./router/userRouter')
-const { cronSchedule } = require('./utils/cronJob')
-app.use(userRouter)
+const userRouter = require("./router/userRouter");
+const { cronSchedule } = require("./utils/cronJob");
+app.use(userRouter);
 
-cronSchedule()
+cronSchedule();
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+  console.log(`Server running on port ${PORT}`);
+});
